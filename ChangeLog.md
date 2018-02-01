@@ -60,6 +60,14 @@ next: '<a href="index.html">Back to: HubFlow: GitFlow For GitHub</a>'
 
    Many thanks to [huafu](https://github.com/huafu) for this fix.
 
+## v1.5.3 - 1st February 2018
+
+Tihs release is a bug-fix release.
+
+### Fixes
+
+* __git hf update__ and empty pathspec warnings/errors: now fixed
+
 ## v1.5.2 - 29th July 2013
 
 This release is a bug-fix release.
