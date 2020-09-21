@@ -70,6 +70,7 @@ func Execute() {
 
 func init() {
 	cobra.OnInitialize(initConfig)
+	cobra.EnableCommandSorting = false
 
 	// set our own usage message
 	rootCmd.SetUsageTemplate(`usage: {{.UseLine}}{{if .HasAvailableSubCommands}}
