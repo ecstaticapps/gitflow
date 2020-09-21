@@ -45,7 +45,7 @@ import (
 // featureCmd represents the feature command
 var featureCmd = &cobra.Command{
 	Use:   "feature",
-	Short: "A brief description of your command",
+	Short: "Manage your feature branches.",
 	Long: `A longer description that spans multiple lines and likely contains examples
 and usage of using your command. For example:
 

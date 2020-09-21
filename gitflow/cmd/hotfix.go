@@ -45,7 +45,7 @@ import (
 // hotfixCmd represents the hotfix command
 var hotfixCmd = &cobra.Command{
 	Use:   "hotfix",
-	Short: "A brief description of your command",
+	Short: "Manage your hotfix branches.",
 	Long: `A longer description that spans multiple lines and likely contains examples
 and usage of using your command. For example:
 

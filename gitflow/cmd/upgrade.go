@@ -45,7 +45,7 @@ import (
 // upgradeCmd represents the upgrade command
 var upgradeCmd = &cobra.Command{
 	Use:   "upgrade",
-	Short: "A brief description of your command",
+	Short: "Upgrade your copy of the Gitflow extension to the latest version.",
 	Long: `A longer description that spans multiple lines and likely contains examples
 and usage of using your command. For example:
 
