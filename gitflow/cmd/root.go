@@ -54,6 +54,7 @@ var rootCmd = &cobra.Command{
 	Short:                 "the Gitflow branching model extension",
 	Long:                  `The Gitflow extension provides all the commands you need to use the Gitflow branching model.`,
 	DisableFlagsInUseLine: true,
+	DisableFlagParsing:    true,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	//	Run: func(cmd *cobra.Command, args []string) { },

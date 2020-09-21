@@ -38,6 +38,8 @@ package cmd
 
 import (
 	"fmt"
+	"os"
+	"os/exec"
 
 	"github.com/spf13/cobra"
 )
@@ -52,8 +54,33 @@ and usage of using your command. For example:
 Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
+	DisableFlagsInUseLine: true,
+	DisableFlagParsing:    true,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("init called")
+		fmt.Printf("init subcommand called\n\n")
+
+		// create the args to pass into `git`
+		childArgs := make([]string, len(args)+2)
+		childArgs[0] = "hf"
+		childArgs[1] = "init"
+		for i := 0; i < len(args); i++ {
+			childArgs[i+2] = args[i]
+		}
+
+		// call the shell script
+		childProc := exec.Command("git", childArgs...)
+		childProc.Stdin = os.Stdin
+		childProc.Stdout = os.Stdout
+		childProc.Stderr = os.Stderr
+
+		err := childProc.Start()
+		if err != nil {
+			os.Exit(127)
+		}
+		err = childProc.Wait()
+
+		// pass on the shell script's exit status code
+		os.Exit(childProc.ProcessState.ExitCode())
 	},
 }
 
