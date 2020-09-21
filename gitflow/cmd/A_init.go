@@ -37,10 +37,9 @@
 package cmd
 
 import (
-	"fmt"
 	"os"
-	"os/exec"
 
+	"github.com/ganbarodigital/gitflow/pkg/helpers"
 	"github.com/spf13/cobra"
 )
 
@@ -57,30 +56,14 @@ to quickly create a Cobra application.`,
 	DisableFlagsInUseLine: true,
 	DisableFlagParsing:    true,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Printf("init subcommand called\n\n")
+		gitArgs := make([]string, 1)
+		gitArgs[0] = "init"
 
-		// create the args to pass into `git`
-		childArgs := make([]string, len(args)+2)
-		childArgs[0] = "hf"
-		childArgs[1] = "init"
-		for i := 0; i < len(args); i++ {
-			childArgs[i+2] = args[i]
-		}
-
-		// call the shell script
-		childProc := exec.Command("git", childArgs...)
-		childProc.Stdin = os.Stdin
-		childProc.Stdout = os.Stdout
-		childProc.Stderr = os.Stderr
-
-		err := childProc.Start()
-		if err != nil {
-			os.Exit(127)
-		}
-		err = childProc.Wait()
+		// call out to the original code
+		statusCode := helpers.CallShellExt(gitArgs, args)
 
 		// pass on the shell script's exit status code
-		os.Exit(childProc.ProcessState.ExitCode())
+		os.Exit(statusCode)
 	},
 }
 
