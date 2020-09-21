@@ -4,3 +4,5 @@ debian/*.debhelper.log
 debian/*/*
 .tags*
 gitflow/gitflow
+node_modules
+
