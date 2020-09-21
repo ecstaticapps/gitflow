@@ -37,8 +37,9 @@
 package cmd
 
 import (
-	"fmt"
+	"os"
 
+	"github.com/ganbarodigital/gitflow/pkg/helpers"
 	"github.com/spf13/cobra"
 )
 
@@ -53,7 +54,15 @@ Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("checkout called")
+		gitArgs := make([]string, 2)
+		gitArgs[0] = "feature"
+		gitArgs[1] = "checkout"
+
+		// call out to the original code
+		statusCode := helpers.CallShellExt(gitArgs, args)
+
+		// pass on the shell script's exit status code
+		os.Exit(statusCode)
 	},
 }
 

@@ -37,8 +37,9 @@
 package cmd
 
 import (
-	"fmt"
+	"os"
 
+	"github.com/ganbarodigital/gitflow/pkg/helpers"
 	"github.com/spf13/cobra"
 )
 
@@ -48,7 +49,14 @@ var pushCmd = &cobra.Command{
 	Short: "Push the changes from your current branch (plus any new tags) back upstream.",
 	Long:  `Push the changes from your current branch (plus any new tags) back upstream.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("push called")
+		gitArgs := make([]string, 1)
+		gitArgs[0] = "push"
+
+		// call out to the original code
+		statusCode := helpers.CallShellExt(gitArgs, args)
+
+		// pass on the shell script's exit status code
+		os.Exit(statusCode)
 	},
 }
 
