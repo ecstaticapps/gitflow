@@ -45,9 +45,9 @@ import (
 // and returns the exit status code from the shell script
 func CallShellExt(cmd []string, args []string) int {
 	// create the args to pass into `git`
-	childArgs := make([]string, len(args)+len(cmd)+1)
+	var childArgs []string
 
-	childArgs[0] = "hf"
+	childArgs = append(childArgs, "hf")
 	for _, x := range cmd {
 		childArgs = append(childArgs, x)
 	}
