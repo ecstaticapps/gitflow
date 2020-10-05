@@ -150,9 +150,12 @@ cmd_default() {
 				done
 			fi
 
-			# if we have no default at this point, use 'master'
+			# if we have no default at this point
+			#
+			# a) ask git what the default should be (added in Git 2.28)
+			# b) fallback to the historical term 'master' otherwise
 			if [ -z "$default_suggestion" ] ; then
-				default_suggestion="master"
+				default_suggestion=$(git config --get init.defaultBranch || echo master)
 				should_check_existence="NO"
 			fi
 		fi
