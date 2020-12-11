@@ -97,7 +97,7 @@ cmd_default() {
 			default_suggestion=$(git config --get hubflow.branch.master || echo master)
 		else
 			echo
-			echo "Which branch should be used for tracking production releases?"
+			echo "Which branch should be used for production?"
 			git_local_branches | sed 's/^.*$/   - &/g'
 
 			should_check_existence=YES
@@ -127,7 +127,7 @@ cmd_default() {
 			fi
 		fi
 
-		printf "Branch name for production releases: [$default_suggestion] "
+		printf "Branch name for production: [$default_suggestion] "
 		if flag ask; then
 			read answer
 		else
@@ -166,7 +166,7 @@ cmd_default() {
 			default_suggestion=$(git config --get hubflow.branch.develop || echo develop)
 		else
 			echo
-			echo "Which branch should be used for integration of the \"next release\"?"
+			echo "Which branch should be used for development?"
 			git_local_branches | grep -v "^${master_branch}\$" | sed 's/^.*$/   - &/g'
 
 			should_check_existence=YES
@@ -190,7 +190,7 @@ cmd_default() {
 			fi
 		fi
 
-		printf "Branch name for \"next release\" development: [$default_suggestion] "
+		printf "Branch name for development: [$default_suggestion] "
 		if flag ask; then
 			read answer
 		else
@@ -288,7 +288,7 @@ cmd_default() {
 
 	# Staging branches
 	if ! git config --get hubflow.prefix.staging >/dev/null 2>&1 || flag force; then
-		default_suggestion=$(git config --get hubflow.prefix.staging || echo release/)
+		default_suggestion=$(git config --get hubflow.prefix.staging || echo staging/)
 		printf "Staging branches? [$default_suggestion] "
 		if flag ask; then
 			read answer

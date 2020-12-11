@@ -212,7 +212,6 @@ hubflow_load_settings() {
 hubflow_change_branch() {
     # what is the current branch?
     local current_branch=$(git_current_branch)
-
     # do we need to switch branch?
     if [[ $current_branch != $1 ]] ; then
         git checkout "$1" || die "Unable to checkout branch '$1'"

@@ -128,7 +128,7 @@ parse_args() {
 
 	# read arguments into global variables
 	VERSION=$1
-	BRANCH=$PREFIX$VERSION
+	BRANCH=$PREFIX
 }
 
 require_version_arg() {
@@ -262,7 +262,7 @@ cmd_finish() {
 		# try to tag the release
 		# in case a previous attempt to finish this staging branch has failed,
 		# but the tag was set successful, we skip it now
-		local tagname=$VERSION_PREFIX$VERSION
+		local tagname=$VERSION
 		if ! git_tag_exists "$tagname"; then
 			local opts="-a"
 			flag sign && opts="$opts -s"
