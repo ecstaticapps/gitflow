@@ -267,7 +267,7 @@ cmd_finish() {
 	fi
 
 	# try to merge into master
-	# in case a previous attempt to finish this release branch has failed,
+	# in case a previous attempt to finish this staging branch has failed,
 	# but the merge into master was successful, we skip it now
 	if ! git_is_branch_merged_into "$BRANCH" "$MASTER_BRANCH"; then
 		git checkout "$MASTER_BRANCH" || \
@@ -279,7 +279,7 @@ cmd_finish() {
 
 	if noflag notag; then
 		# try to tag the release
-		# in case a previous attempt to finish this release branch has failed,
+		# in case a previous attempt to finish this staging branch has failed,
 		# but the tag was set successful, we skip it now
 		local tagname=$VERSION_PREFIX$VERSION
 		if ! git_tag_exists "$tagname"; then
@@ -316,7 +316,7 @@ cmd_finish() {
 		if ! git_is_branch_merged_into "$BRANCH" "$DEVELOP_BRANCH"; then
 			git checkout "$DEVELOP_BRANCH" || \
 				die "Could not check out $DEVELOP_BRANCH."
-			# just merge the release branch into the development branch
+			# just merge the staging branch into the development branch
 			git merge --no-ff "$BRANCH" || \
 				die "There were merge conflicts."
 		fi
@@ -401,12 +401,12 @@ cmd_cancel() {
 
 		# try to merge into develop
 		#
-		# in case a previous attempt to finish this release branch has failed,
+		# in case a previous attempt to finish this staging branch has failed,
 		# but the merge into develop was successful, we skip it now
 		if ! git_is_branch_merged_into "$BRANCH" "$DEVELOP_BRANCH"; then
 			git checkout "$DEVELOP_BRANCH" || \
 				die "Could not check out $DEVELOP_BRANCH."
-			# just merge the release branch into the development branch
+			# just merge the staging branch into the development branch
 			git merge --no-ff "$BRANCH" || \
 				die "There were merge conflicts."
 		fi

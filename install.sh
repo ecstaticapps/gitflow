@@ -49,7 +49,7 @@ fi
 
 REPO_DIR="$(dirname $0)"
 EXEC_FILES="git-hf"
-SCRIPT_FILES="git-hf-init git-hf-feature git-hf-hotfix git-hf-push git-hf-pull git-hf-release git-hf-support git-hf-update git-hf-upgrade git-hf-version hubflow-common hubflow-shFlags"
+SCRIPT_FILES="git-hf-init git-hf-feature git-hf-hotfix git-hf-push git-hf-pull git-hf-staging git-hf-support git-hf-update git-hf-upgrade git-hf-version hubflow-common hubflow-shFlags"
 SUBMODULE_FILE="hubflow-shFlags"
 
 case "$1" in
